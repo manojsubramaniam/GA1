@@ -31,20 +31,20 @@ jobs:
         
       - name: Install Java
         run: |
-          ssh ubuntu@43.204.38.88 'sudo apt install default-jre -y'
-          ssh ubuntu@43.204.38.88 'sudo apt install default-jdk -y'
+          sudo apt install default-jre -y
+          sudo apt install default-jdk -y
 
       - name: Verify Java Installation
         run: |
-          ssh ubuntu@43.204.38.88 'javac -version'
+          javac -version
 
-      - name: Checkout code
-        uses: actions/checkout@v2
+ #     - name: Checkout code
+ #       uses: actions/checkout@v2
         
-      - name: Build and test
-        run: |
-          docker build -t myimg/your-app:latest .
-          docker run myimg/your-app:latest npm test
+#      - name: Build and test
+  #      run: |
+   #       docker build -t myimg/your-app:latest .
+    #      docker run myimg/your-app:latest npm test
     
      # - name: Tag Docker image
    #     run: docker tag my-app username/repo:latest
