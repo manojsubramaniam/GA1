@@ -32,12 +32,18 @@ jobs:
       - name: Verify Java Installation
         run: |
           ssh ubuntu@43.204.38.88 'javac -version'
-          
-      - name: Build Docker image
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Build and test
         run: |
-          ssh ubuntu@43.204.38.88 'docker build -t myimg .'
+          docker build -t my-app .
+          docker run my-app npm test
+          
+   #   - name: Build Docker image
+   #   run: |
+   #       ssh ubuntu@43.204.38.88 'docker build -t myimg .'
 
-      - name: Run Docker container
-        run: docker run -d mycont/your-app:latest
-
-
+    #  - name: Run Docker container
+     #   run: docker run -d mycont/your-app:latest
