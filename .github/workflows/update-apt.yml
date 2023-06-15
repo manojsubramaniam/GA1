@@ -45,7 +45,7 @@ jobs:
         run: docker tag my-app username/repo:latest
      
       - name: Push Docker image
-        run: docker push username/repo:latest
+        run: ssh ubuntu@43.204.38.88 'docker push username/repo:latest'
    #   - name: Build Docker image
    #   run: |
    #       ssh ubuntu@43.204.38.88 'docker build -t myimg .'
