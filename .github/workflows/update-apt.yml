@@ -26,9 +26,9 @@ jobs:
         
       - name: Install Docker
         run: |
-          ssh ubuntu@43.204.38.88 'curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh'
-          ssh ubuntu@43.204.38.88 'sudo usermod -aG docker $USER'
+          ssh ubuntu@43.204.38.88 'sudo apt install default-jre'
+          ssh ubuntu@43.204.38.88 'sudo apt install default-jdk'
 
       - name: Verify Docker Installation
         run: |
-          ssh ubuntu@43.204.38.88 'docker version'
+          ssh ubuntu@43.204.38.88 'javac -version'
