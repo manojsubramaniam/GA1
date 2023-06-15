@@ -13,7 +13,9 @@ jobs:
       - name: Configure SSH
         uses: webfactory/ssh-agent@v0.5.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: 43.204.38.88
+          username: ${{ secrets.SSH_USER_NAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: Update known_hosts
         run: ssh-keyscan your-remote-server >> ~/.ssh/known_hosts
