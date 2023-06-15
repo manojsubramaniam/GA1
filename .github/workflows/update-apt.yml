@@ -38,12 +38,17 @@ jobs:
         
       - name: Build and test
         run: |
-          docker build -t my-app .
-          docker run my-app npm test
+          docker build -t myimg/your-app:latest .
+          docker run myimg/your-app:latest npm test
     
-      - name: Tag Docker image
-        run: docker tag my-app username/repo:latest
-     
+     # - name: Tag Docker image
+   #     run: docker tag my-app username/repo:latest
+      
+      - name: Build and Push Docker Image
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@43.204.38.88 'cd /path/to/app && docker build -t myimg/your-app:latest .'
+          docker save myimg/your-app:latest | ssh -o StrictHostKeyChecking=no ubuntu@43.204.38.88 'docker load'
+
       - name: Push Docker image
         run: ssh ubuntu@43.204.38.88 'docker push username/repo:latest'
    #   - name: Build Docker image
