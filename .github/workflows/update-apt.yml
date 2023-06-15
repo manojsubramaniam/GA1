@@ -26,8 +26,8 @@ jobs:
         
       - name: Install Docker
         run: |
-          ssh ubuntu@43.204.38.88 'sudo apt install default-jre'
-          ssh ubuntu@43.204.38.88 'sudo apt install default-jdk'
+          ssh ubuntu@43.204.38.88 'sudo apt install default-jre -y'
+          ssh ubuntu@43.204.38.88 'sudo apt install default-jdk -y'
 
       - name: Verify Docker Installation
         run: |
