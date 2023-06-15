@@ -18,17 +18,12 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           server-port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.REMOTE_USERNAME }}
-          run: |
-            docker-compose up -d
             
-      - name: Update known_hosts
-        run: ssh-keyscan your-remote-server >> ~/.ssh/known_hosts
-      
       - name: Install Docker
         run: |
-          ssh ubuntu@43.204.38.88 'curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh'
-          ssh ubuntu@43.204.38.88 'sudo usermod -aG docker $USER'
+          curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+          sudo usermod -aG docker $USER
 
       - name: Verify Docker Installation
         run: |
-          ssh ubuntu@43.204.38.88 'docker version'
+          docker version
