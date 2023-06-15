@@ -32,17 +32,10 @@ jobs:
       - name: Verify Java Installation
         run: |
           ssh ubuntu@43.204.38.88 'javac -version'
-      
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./path/to/Dockerfile
-          push: true
-          tags: myimg/your-app:latest
           
       - name: Build Docker image
-        run: docker build -t myimg/your-app:latest .
+        run: |
+          ssh ubuntu@43.204.38.88 'docker build -t myimg/your-app:latest .'
 
       - name: Run Docker container
         run: docker run -d mycont/your-app:latest
