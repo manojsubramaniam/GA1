@@ -24,11 +24,22 @@ jobs:
         run: |
           ssh ubuntu@43.204.38.88 'sudo apt update'
         
-      - name: Install Docker
+      - name: Install Java
         run: |
           ssh ubuntu@43.204.38.88 'sudo apt install default-jre -y'
           ssh ubuntu@43.204.38.88 'sudo apt install default-jdk -y'
 
-      - name: Verify Docker Installation
+      - name: Verify Java Installation
         run: |
           ssh ubuntu@43.204.38.88 'javac -version'
+          
+      - name: Set up Docker
+        run: |
+          sudo apt-get update
+          ssh ubuntu@43.204.38.88 'javac -version'
+
+      - name: Build Docker image
+        run: docker build -t myimg/your-app:latest .
+
+      - name: Run Docker container
+        run: docker run -d mycont/your-app:latest
