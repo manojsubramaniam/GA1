@@ -17,6 +17,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
       - name: Update known_hosts
         run: ssh-keyscan your-remote-server >> ~/.ssh/known_hosts
 
