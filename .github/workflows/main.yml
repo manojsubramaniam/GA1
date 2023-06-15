@@ -1,4 +1,4 @@
-name: Docker Compose Remote Deployment
+name: Install Docker on Remote Server
 
 on:
   push:
@@ -10,22 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Configure SSH
         uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      
-      - name: Update known_hosts
-        run: ssh-keyscan your-remote-server >> ~/.ssh/known_hosts
 
-      - name: Install Docker Compose
+      - name: Install Docker
         run: |
-          sudo apt-get update
-          sudo apt-get install docker-compose -y
+          ssh ubuntu@43.204.38.88 'curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh'
+          ssh ubuntu@43.204.38.88 'sudo usermod -aG docker $USER'
 
-      - name: Deploy with Docker Compose
+      - name: Verify Docker Installation
         run: |
-          ssh ubuntu@43.204.38.88 'cd /path/to/project && docker-compose up -d'
+          ssh ubuntu@43.204.38.88 'docker version'
