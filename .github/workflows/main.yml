@@ -10,13 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Configure SSH
+    
+      - name: Deploy
         uses: webfactory/ssh-agent@v0.5.0
         with:
-          host: 43.204.38.88
-          username: ${{ secrets.SSH_USER_NAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-      
+          host: ${{ secrets.SERVER_IP }}
+          server-port: ${{ secrets.SERVER_PORT }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          run: |
+            docker-compose up -d
+            
       - name: Update known_hosts
         run: ssh-keyscan your-remote-server >> ~/.ssh/known_hosts
       
