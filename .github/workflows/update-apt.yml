@@ -34,7 +34,7 @@ jobs:
           ssh ubuntu@43.204.38.88 'javac -version'
         
       - name: Build Docker image
-        working-directory: ./GA1
+        working-directory: GA1
         run: docker build -t myimg/your-app:latest .
 
       - name: Run Docker container
