@@ -23,3 +23,12 @@ jobs:
       - name: Run apt update
         run: |
           ssh ubuntu@43.204.38.88 'sudo apt update'
+        
+      - name: Install Docker
+        run: |
+          ssh ubuntu@43.204.38.88 'curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh'
+          ssh ubuntu@43.204.38.88 'sudo usermod -aG docker $USER'
+
+      - name: Verify Docker Installation
+        run: |
+          ssh ubuntu@43.204.38.88 'docker version'
