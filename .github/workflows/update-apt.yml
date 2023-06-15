@@ -8,6 +8,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SERVER_IP: ${{ secrets.SERVER_IP }}
+      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+      SERVER_PORT: ${{ secrets.SERVER_PORT }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     steps:
       - name: Update known_hosts
@@ -22,7 +27,7 @@ jobs:
 
       - name: Run apt update
         run: |
-          ssh ubuntu@43.204.38.88 'sudo apt update'
+         sudo apt update
         
       - name: Install Java
         run: |
